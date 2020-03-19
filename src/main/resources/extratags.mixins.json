@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "tfar.extratags.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "extratags.refmap.json",
+  "mixins": [
+    "EnchantmentMixin",
+    "BlockEntityTypeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
