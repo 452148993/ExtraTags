@@ -5,7 +5,8 @@
   "refmap": "extratags.refmap.json",
   "mixins": [
     "EnchantmentMixin",
-    "BlockEntityTypeMixin"
+    "BlockEntityTypeMixin",
+    "BiomeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
