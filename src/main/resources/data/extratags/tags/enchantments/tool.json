@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:efficiency",
+    "minecraft:unbreaking",
+    "minecraft:silk_touch",
+    "minecraft:mending",
+    "minecraft:fortune",
+    "minecraft:vanishing_curse"
+  ]
+}

@@ -2,10 +2,6 @@ package tfar.extratags.network;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
-import tfar.extratags.api.tagtypes.BiomeTags;
-import tfar.extratags.api.tagtypes.BlockEntityTypeTags;
-import tfar.extratags.api.tagtypes.DimensionTypeTags;
-import tfar.extratags.api.tagtypes.EnchantmentTags;
 import tfar.extratags.api.ExtraTagManager;
 
 import java.util.function.Supplier;
@@ -16,8 +12,8 @@ public class S2CExtraTagsListPacket {
 
 	public S2CExtraTagsListPacket(){}
 
-	public S2CExtraTagsListPacket(ExtraTagManager p_i48211_1_) {
-		tags = p_i48211_1_;
+	public S2CExtraTagsListPacket(ExtraTagManager tagManager) {
+		tags = tagManager;
 	}
 
 	public S2CExtraTagsListPacket(PacketBuffer buffer) {
@@ -29,12 +25,7 @@ public class S2CExtraTagsListPacket {
 	}
 
 	public void handle(Supplier<NetworkEvent.Context> context) {
-		context.get().enqueueWork(() -> {
-			EnchantmentTags.setCollection(tags.getEnchantments());
-			BlockEntityTypeTags.setCollection(tags.getBlockEntityTypes());
-			BiomeTags.setCollection(tags.getBiomes());
-			DimensionTypeTags.setCollection(tags.getDimensionTypes());
-		});
+		context.get().enqueueWork(tags::setCollections);
 		context.get().setPacketHandled(true);
 	}
 }

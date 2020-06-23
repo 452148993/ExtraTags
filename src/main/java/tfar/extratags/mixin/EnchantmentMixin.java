@@ -5,15 +5,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ReverseTagWrapper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
+import tfar.extratags.VanillaReverseTagWrapper;
 import tfar.extratags.api.ReverseTag;
-import tfar.extratags.api.tagtypes.EnchantmentTags;
+
+import static tfar.extratags.api.TagRegistry.ENCHANTMENT;
 
 @Mixin(Enchantment.class)
 public class EnchantmentMixin implements ReverseTag {
 
 	@Unique
-	private final net.minecraftforge.common.util.ReverseTagWrapper<Enchantment> reverseTags =
-					new ReverseTagWrapper<>((Enchantment)(Object)this, EnchantmentTags::getGeneration, EnchantmentTags::getCollection);
+	private final ReverseTagWrapper<Enchantment> reverseTags = new VanillaReverseTagWrapper<>((Enchantment) (Object)this, ENCHANTMENT);
 
 	@Override
 	public java.util.Set<ResourceLocation> getTags() {

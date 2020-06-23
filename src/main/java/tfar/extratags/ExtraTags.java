@@ -1,7 +1,14 @@
 package tfar.extratags;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -9,9 +16,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkDirection;
+import tfar.extratags.api.ReverseTag;
 import tfar.extratags.network.PacketHandler;
 import tfar.extratags.network.S2CExtraTagsListPacket;
 import tfar.extratags.api.ExtraTagManager;
+
+import java.util.Set;
 
 @Mod(ExtraTags.MODID)
 public class ExtraTags {
@@ -26,6 +36,7 @@ public class ExtraTags {
 		iEventBus.addListener(this::common);
 		MinecraftForge.EVENT_BUS.addListener(this::onServerStarting);
 		MinecraftForge.EVENT_BUS.addListener(this::onPlayerLogin);
+		MinecraftForge.EVENT_BUS.addListener(this::onTooltip);
 		instance = this;
 	}
 
@@ -45,7 +56,7 @@ public class ExtraTags {
 							NetworkDirection.PLAY_TO_CLIENT);
 		}
 	}
-	/*
+
 	public void onTooltip(ItemTooltipEvent e) {
 		if (e.getItemStack().getItem() == Items.ENCHANTED_BOOK){
 			Set<Enchantment> enchantments = EnchantmentHelper.getEnchantments(e.getItemStack()).keySet();
@@ -60,5 +71,5 @@ public class ExtraTags {
 				});
 			}
 		}
-	}*/
+	}
 }
