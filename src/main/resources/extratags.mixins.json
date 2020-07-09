@@ -6,7 +6,8 @@
   "mixins": [
     "EnchantmentMixin",
     "BlockEntityTypeMixin",
-    "BiomeMixin"
+    "BiomeMixin",
+    "ServerResourceManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

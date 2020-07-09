@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Unique;
 import tfar.extratags.VanillaReverseTagWrapper;
 import tfar.extratags.api.ReverseTag;
 
-import static tfar.extratags.api.TagRegistry.BLOCK_ENTITY_TYPE;
+import static tfar.extratags.api.ExtraTagRegistry.BLOCK_ENTITY_TYPE;
 
 @Mixin(TileEntityType.class)
 public class BlockEntityTypeMixin implements ReverseTag {

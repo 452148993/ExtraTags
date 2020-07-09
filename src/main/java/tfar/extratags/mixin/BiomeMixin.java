@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Unique;
 import tfar.extratags.VanillaReverseTagWrapper;
 import tfar.extratags.api.ReverseTag;
 
-import static tfar.extratags.api.TagRegistry.BIOME;
+import static tfar.extratags.api.ExtraTagRegistry.BIOME;
 
 @Mixin(Biome.class)
 public class BiomeMixin implements ReverseTag {

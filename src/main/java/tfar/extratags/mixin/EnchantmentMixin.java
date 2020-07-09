@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Unique;
 import tfar.extratags.VanillaReverseTagWrapper;
 import tfar.extratags.api.ReverseTag;
 
-import static tfar.extratags.api.TagRegistry.ENCHANTMENT;
+import static tfar.extratags.api.ExtraTagRegistry.ENCHANTMENT;
 
 @Mixin(Enchantment.class)
 public class EnchantmentMixin implements ReverseTag {
@@ -20,5 +20,4 @@ public class EnchantmentMixin implements ReverseTag {
 	public java.util.Set<ResourceLocation> getTags() {
 		return reverseTags.getTagNames();
 	}
-
 }

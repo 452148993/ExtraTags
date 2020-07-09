@@ -1,72 +1,37 @@
 package tfar.extratags.api;
 
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.NetworkTagCollection;
 import net.minecraft.tags.TagCollection;
+import net.minecraft.tags.TagRegistry;
 import net.minecraft.util.ResourceLocation;
 
-import javax.annotation.Nonnull;
-import java.util.Collection;
-import java.util.Optional;
+import java.util.Set;
 
 public class ModTag<T> {
 
-	private TagCollection<T> collection = new TagCollection<>(location -> Optional.empty(), "", false, "");
-	private int generation;
+	private final TagRegistry<T> ACCESSOR = new TagRegistry<>();
 
-	public void setCollection(TagCollection<T> collection) {
-		this.collection = collection;
-		generation++;
+	public ModTag() {
 	}
 
-	public TagCollection<T> getCollection() {
-		return collection;
+	public ITag.INamedTag<T> register(String id) {
+		return this.ACCESSOR.func_232937_a_(id);
 	}
 
-	public int getGeneration() {
-		return generation;
+	public void setContainer(TagCollection<T> container) {
+		this.ACCESSOR.func_232935_a_(container);
 	}
 
-	public Tag<T> create(ResourceLocation resourceLocation) {
-		return new ModTag.CachingTag<>(resourceLocation, this);
+	public void markReady() {
+		this.ACCESSOR.func_232932_a_();
 	}
 
-	public static class CachingTag<T> extends Tag<T> {
+	public TagCollection<T> getContainer() {
+		return this.ACCESSOR.func_232939_b_();
+	}
 
-		private final ModTag<T> tagCollection;
-		private int lastKnownGeneration = -1;
-		private Tag<T> cachedTag;
-
-		public CachingTag(ResourceLocation resourceLocation, ModTag<T> tagCollection) {
-			super(resourceLocation);
-			this.tagCollection = tagCollection;
-		}
-
-		private void validateCache() {
-			int generation = tagCollection.getGeneration();
-			if (this.lastKnownGeneration != generation) {
-				this.cachedTag = tagCollection.getCollection().getOrCreate(getId());
-				this.lastKnownGeneration = generation;
-			}
-		}
-
-		@Override
-		public boolean contains(@Nonnull T chemical) {
-			validateCache();
-			return this.cachedTag.contains(chemical);
-		}
-
-		@Nonnull
-		@Override
-		public Collection<T> getAllElements() {
-			validateCache();
-			return this.cachedTag.getAllElements();
-		}
-
-		@Nonnull
-		@Override
-		public Collection<ITagEntry<T>> getEntries() {
-			validateCache();
-			return this.cachedTag.getEntries();
-		}
+	public Set<ResourceLocation> set(TagCollection<T> tagContainer) {
+		return this.ACCESSOR.func_232940_b_(tagContainer);
 	}
 }

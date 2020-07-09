@@ -25,7 +25,7 @@ public class S2CExtraTagsListPacket {
 	}
 
 	public void handle(Supplier<NetworkEvent.Context> context) {
-		context.get().enqueueWork(tags::setCollections);
+		context.get().enqueueWork(tags::sync);
 		context.get().setPacketHandled(true);
 	}
 }

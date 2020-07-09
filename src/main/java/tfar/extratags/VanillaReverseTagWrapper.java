@@ -5,6 +5,6 @@ import tfar.extratags.api.ModTag;
 
 public class VanillaReverseTagWrapper<T> extends ReverseTagWrapper<T> {
 	public VanillaReverseTagWrapper(T target, ModTag<T> tag) {
-		super(target, tag::getGeneration, tag::getCollection);
+		super(target, tag::getContainer);
 	}
 }
