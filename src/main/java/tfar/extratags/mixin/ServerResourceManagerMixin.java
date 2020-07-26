@@ -9,9 +9,12 @@ import tfar.extratags.ExtraTags;
 
 @Mixin(DataPackRegistries.class)
 public class ServerResourceManagerMixin {
+
 	@Inject(
-					method = "updateTags",
+					method = {"Lnet/minecraft/resources/DataPackRegistries;updateTags()V",
+									"Lnet/minecraft/resources/DataPackRegistries;func_240971_i_()V"},
 					at = @At("RETURN")
+					,require = 1,remap = false
 	)
 	private void applyExtraTags(CallbackInfo ci) {
 		ExtraTags.instance.extraTagManager.sync();
