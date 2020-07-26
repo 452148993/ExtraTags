@@ -16,13 +16,13 @@ public class TooltipTest {
 		if (e.getItemStack().getItem() == Items.ENCHANTED_BOOK){
 			Set<Enchantment> enchantments = EnchantmentHelper.getEnchantments(e.getItemStack()).keySet();
 			if (enchantments.size() == 1) {
-				e.getToolTip().add(new StringTextComponent("Enchantment Tags:").func_240699_a_(TextFormatting.AQUA));
+				e.getToolTip().add(new StringTextComponent("Enchantment Tags:").mergeStyle(TextFormatting.AQUA));
 				enchantments.forEach(enchantment -> {
 					Set<ResourceLocation> tags = ((ReverseTag) enchantment).getTags();
 					if (!tags.isEmpty())
 						tags.forEach(resourceLocation -> e.getToolTip().add(new StringTextComponent(resourceLocation.toString())
-										.func_240699_a_(TextFormatting.DARK_GRAY)));
-					else e.getToolTip().add(new StringTextComponent("none").func_240699_a_(TextFormatting.DARK_GRAY));
+										.mergeStyle(TextFormatting.DARK_GRAY)));
+					else e.getToolTip().add(new StringTextComponent("none").mergeStyle(TextFormatting.DARK_GRAY));
 				});
 			}
 		}

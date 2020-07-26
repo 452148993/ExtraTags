@@ -10,7 +10,7 @@ import tfar.extratags.ExtraTags;
 @Mixin(DataPackRegistries.class)
 public class ServerResourceManagerMixin {
 	@Inject(
-					method = "func_240971_i_",
+					method = "updateTags",
 					at = @At("RETURN")
 	)
 	private void applyExtraTags(CallbackInfo ci) {
