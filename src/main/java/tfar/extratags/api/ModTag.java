@@ -1,7 +1,6 @@
 package tfar.extratags.api;
 
 import net.minecraft.tags.ITag;
-import net.minecraft.tags.NetworkTagCollection;
 import net.minecraft.tags.TagCollection;
 import net.minecraft.tags.TagRegistry;
 import net.minecraft.util.ResourceLocation;
