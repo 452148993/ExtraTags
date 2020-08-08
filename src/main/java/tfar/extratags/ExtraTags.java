@@ -1,6 +1,7 @@
 package tfar.extratags;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
@@ -8,6 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import tfar.extratags.api.ExtraTagManager;
 import tfar.extratags.api.ExtraTagRegistry;
 import tfar.extratags.api.ModTag;
@@ -26,9 +28,11 @@ public class ExtraTags {
 		IEventBus iEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		iEventBus.addListener(this::common);
 		MinecraftForge.EVENT_BUS.addListener(this::onServerStarting);
-		MinecraftForge.EVENT_BUS.addListener(this::onPlayerLogin);
-		if (dev()) {
-			MinecraftForge.EVENT_BUS.addListener(TooltipTest::onTooltip);
+		if (FMLEnvironment.dist == Dist.CLIENT) {
+			MinecraftForge.EVENT_BUS.addListener(this::onPlayerLogin);
+			if (dev()) {
+				MinecraftForge.EVENT_BUS.addListener(TooltipTest::onTooltip);
+			}
 		}
 		instance = this;
 	}
